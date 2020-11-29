@@ -25,11 +25,10 @@ const map = function (value, in_min, in_max, out_min, out_max) {
 };
 
 function App() {
-  const r = 200;
+  const r = 190;
   const cx = 250;
   const cy = 250;
   const [list, setList] = useState(default_list);
-  //console.log(list);
   const [name, setName] = useState("");
   const [power, setPower] = useState(0);
   const [acc, setAcc] = useState(0);
@@ -75,7 +74,7 @@ function App() {
       items.push(
         <Fragment key={i}>
           <line
-            stroke="rgb(255,0,0)"
+            stroke="#4065a2"
             strokeWidth="2"
             x1={cx + xLength}
             y1={cy + yLength}
@@ -86,7 +85,7 @@ function App() {
             x={cx + txLength}
             y={cy + tyLength}
             fontSize="15px"
-            transform={`rotate(${((i + 0.5) / numOfItems + OFFSET) * 360} 
+            transform={`rotate(${((i + 0.5) / numOfItems + OFFSET) * 360}
                   ${cx + txLength},
                   ${cy + tyLength})`}
           >
@@ -116,14 +115,14 @@ function App() {
         >
           {rederItems(list.length)}
         </animated.g>
-        <g fill="#61DAFB">
+        <g fill="#7fdaf8">
           <circle cx="250" cy="250" r="15" />
         </g>
         <g fill="black">
-          <circle cx="250" cy="250" r="5" />
+          <circle cx="250" cy="250" r="4" />
         </g>
-        <g fill="lime" stroke="purple" strokeWidth="2">
-          <polygon points="250,70 230,30 270,30" />
+        <g fill="#1a3997" stroke="#91abd0" strokeWidth="2">
+          <polygon points="250,70 230,10 270,10" />
         </g>
       </svg>
       <PressButton setPower={setPower} />
@@ -194,7 +193,7 @@ const PressButton = ({ setPower }) => {
       <animated.div className="content">
         {props.width.interpolate((x) => {
           setWidth(parseInt(x));
-          return x === "0%" ? "Press me!" : parseInt(x) + "%";
+          return x === "0%" ? "Press me!" : "Pressurised "+parseInt(x) + "%";
         })}
       </animated.div>
     </button>
