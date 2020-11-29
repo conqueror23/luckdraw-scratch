@@ -18,10 +18,6 @@ const default_list = JSON.parse(storage.getItem(DEFAULT)) ?? [
 const OFFSET = Math.random();
 
 const map = function (value, in_min, in_max, out_min, out_max) {
-  //console.log(value);
-  //console.log(
-  //  ((value - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min
-  //);
   if (value === 0) {
     return out_min;
   }
@@ -49,7 +45,6 @@ function App() {
   };
   const deleteItem = (e) => {
     const { item } = e.currentTarget.dataset;
-    console.log(item)
     storage.setItem(DEFAULT, JSON.stringify(list.filter((e) => e !== item)));
     setList(list.filter((e) => e !== item));
   };
@@ -66,7 +61,7 @@ function App() {
       config,
     });
     setAcc(acc + power);
-  }, [power]);
+  }, [acc, config, power, set]);
 
   const rederItems = (numOfItems) => {
     let items = [];
@@ -131,7 +126,7 @@ function App() {
           <polygon points="250,70 230,30 270,30" />
         </g>
       </svg>
-      <PressButton setPower={setPower} style={{ height: "20vh" }} />
+      <PressButton setPower={setPower} />
       <div style={{ marginTop: "20vh", marginBottom: "5vh" }}>
         <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
         <button className="button" onClick={addItem}>Add</button>
@@ -165,13 +160,13 @@ const PressButton = ({ setPower }) => {
         from: { width: "0%", backgroundColor: "hotpink" },
         to: { width: "100%", backgroundColor: "red" },
         immediate: false,
-        config: { duration: 2000 },
+        config: { duration: 500 },
       });
     else {
       setPower(parseInt(width));
       set({ to: { width: "0%", backgroundColor: "hotpink" }, immediate: true });
     }
-  }, [pressed]);
+  }, [pressed, set, setPower, width]);
 
   return (
     <button
