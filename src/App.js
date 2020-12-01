@@ -7,6 +7,16 @@ var storage = window.localStorage;
 
 const DEFAULT = "default_list";
 
+const getSelectedNumber =(list,acc,power)=>{
+  const archDegree = 360/list.length
+    const rotationAngle = map(acc + power, 0, 100, 0, 1700)
+    const balance = rotationAngle%360;
+    const arrowLocation =(Math.abs(360-balance)-90)/archDegree
+    const numberIndex = arrowLocation>0?Math.ceil(arrowLocation):Math.ceil(list.length+arrowLocation)
+    return list[numberIndex-1];
+
+}
+
 const default_list = JSON.parse(storage.getItem(DEFAULT)) ?? [
   "金鳳",
   "金坊",
@@ -15,7 +25,8 @@ const default_list = JSON.parse(storage.getItem(DEFAULT)) ?? [
   "韓閣",
 ];
 
-const OFFSET = Math.random();
+// const OFFSET = Math.random();
+const OFFSET =0;
 
 const map = function (value, in_min, in_max, out_min, out_max) {
   if (value === 0) {
@@ -62,6 +73,12 @@ function App() {
     setAcc(acc + power);
   }, [acc, config, power, set]);
 
+    const selectedNumber =getSelectedNumber(list,acc,power)
+
+    console.log('selected',selectedNumber)
+    //TODO remove selected Number and echo out this number after the transform stops
+
+
   const rederItems = (numOfItems) => {
     let items = [];
     for (let i = 0; i < numOfItems; i++) {
@@ -96,6 +113,7 @@ function App() {
     }
     return items;
   };
+
 
   return (
     <div style={{ overflowX: "hidden" }}>
@@ -159,7 +177,7 @@ const PressButton = ({ setPower }) => {
         from: { width: "0%", backgroundColor: "hotpink" },
         to: { width: "100%", backgroundColor: "red" },
         immediate: false,
-        config: { duration: 500 },
+        config: { duration: 400 },
       });
     else {
       setPower(parseInt(width));
@@ -193,7 +211,7 @@ const PressButton = ({ setPower }) => {
       <animated.div className="content">
         {props.width.interpolate((x) => {
           setWidth(parseInt(x));
-          return x === "0%" ? "Press me!" : "Pressurised "+parseInt(x) + "%";
+          return x === "0%" ? "Hold Me For More Strength" : "Pressurised "+parseInt(x) + "%";
         })}
       </animated.div>
     </button>
