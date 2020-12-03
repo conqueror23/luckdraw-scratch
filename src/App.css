@@ -29,7 +29,21 @@ body {
   left: 0;
   height: 100%;
 }
+.main-wrapper{
+display:flex;
+    flex-direction:row;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    justify-content:center;
+}
 
+.content-wrapper{
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    align-items:center;
+    justify-content:center;
+}
 .content {
   position: absolute;
   top: 0;

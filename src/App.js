@@ -2,14 +2,15 @@ import React, { Fragment, useState, useEffect } from "react";
 import { animated, useSpring } from "react-spring";
 import {ReactComponent as Logo} from "./delete.svg";
 import "./App.css";
+import Winners from './winnerList/WinnerList.jsx'
 
 var storage = window.localStorage;
 
 const DEFAULT = "default_list";
 
-const getSelectedNumber =(list,acc,power)=>{
+const getSelectedNumber =(list,calcuPower)=>{
   const archDegree = 360/list.length
-    const rotationAngle = map(acc + power, 0, 100, 0, 1700)
+    const rotationAngle = map(calcuPower, 0, 100, 0, 1700)
     const balance = rotationAngle%360;
     const arrowLocation =(Math.abs(360-balance)-90)/archDegree
     const numberIndex = arrowLocation>0?Math.ceil(arrowLocation):Math.ceil(list.length+arrowLocation)
@@ -36,12 +37,14 @@ const map = function (value, in_min, in_max, out_min, out_max) {
 };
 
 function App() {
+    const [winnerList,setWinnerList] =useState([]);
   const r = 190;
   const cx = 250;
   const cy = 250;
   const [list, setList] = useState(default_list);
   const [name, setName] = useState("");
   const [power, setPower] = useState(0);
+    const [previousPower,setPreviousPower]= useState(0)
   const [acc, setAcc] = useState(0);
   const config = { mass: 50, tension: 200, friction: 200, precision: 0.001 };
   const [props, set] = useSpring(() => ({
@@ -64,19 +67,25 @@ function App() {
   }
 
   useEffect(() => {
-    set({
-      from: { transform: `rotate(${map(acc, 0, 100, 0, 1700)}deg)` },
-      transform: `rotate(${map(acc + power, 0, 100, 0, 1700)}deg)`,
-      immediate: false,
-      config,
-    });
-    setAcc(acc + power);
-  }, [acc, config, power, set]);
+      if(power!==previousPower){
+          set({
+              from: { transform: `rotate(${map(acc, 0, 100, 0, 1700)}deg)` },
+              transform: `rotate(${map(acc + power, 0, 100, 0, 1700)}deg)`,
+              immediate: false,
+              config,
+          });
+          setAcc(acc + power);
+          setPreviousPower(power);
+          const calcuPower =acc+power
+          const selectedNumber =getSelectedNumber(list,calcuPower)
 
-    const selectedNumber =getSelectedNumber(list,acc,power)
 
-    console.log('selected',selectedNumber)
-    //TODO remove selected Number and echo out this number after the transform stops
+          if(!winnerList.includes(selectedNumber)){
+              setWinnerList([...winnerList,selectedNumber])
+          }
+      }
+  }, [acc, config, list, power, previousPower, set, winnerList]);
+
 
 
   const rederItems = (numOfItems) => {
@@ -116,11 +125,12 @@ function App() {
 
 
   return (
-    <div style={{ overflowX: "hidden" }}>
+    <div className="main-wrapper" style={{ overflowX: "hidden" }}>
+        <div className="content-wrapper">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 500 500"
-        style={{ width: "100vw", height: "80vh" }}
+        style={{ width: "60vw", height: "80vh" }}
       >
         <g fill="white" stroke="green" strokeWidth="10">
           <circle cx="250" cy="250" r={r} />
@@ -160,6 +170,8 @@ function App() {
           </div>
         ))}
       </div>
+          </div>
+        <Winners winnerList={winnerList}/>
     </div>
   );
 }
@@ -180,7 +192,7 @@ const PressButton = ({ setPower }) => {
         config: { duration: 400 },
       });
     else {
-      setPower(parseInt(width));
+          setPower(parseInt(width));
       set({ to: { width: "0%", backgroundColor: "hotpink" }, immediate: true });
     }
   }, [pressed, set, setPower, width]);

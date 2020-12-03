@@ -1,0 +1,19 @@
+.winnerList{
+    display: flex;
+    flex-direction:column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.winnerList .winner{
+    display: flex;
+    width:80px;
+    flex-direction:row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+.winnerList .winner .order{
+    color:#00fec4;
+    padding-right:16px;
+}
+
