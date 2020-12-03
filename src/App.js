@@ -44,7 +44,7 @@ function App() {
   const [list, setList] = useState(default_list);
   const [name, setName] = useState("");
   const [power, setPower] = useState(0);
-    const [previousPower,setPreviousPower]= useState(0)
+  const [previousPower,setPreviousPower]= useState(0)
   const [acc, setAcc] = useState(0);
   const config = { mass: 50, tension: 200, friction: 200, precision: 0.001 };
   const [props, set] = useSpring(() => ({
@@ -78,7 +78,8 @@ function App() {
           setPreviousPower(power);
           const calcuPower =acc+power
           const selectedNumber =getSelectedNumber(list,calcuPower)
-
+         //TODO add a popups which enable to create a button and user may click button to remove privious result 
+         // setList(list.filter((e) => e !== selectedNumber));
 
           if(!winnerList.includes(selectedNumber)){
               setWinnerList([...winnerList,selectedNumber])
@@ -177,56 +178,14 @@ function App() {
 }
 
 const PressButton = ({ setPower }) => {
-  const [pressed, toggle] = useState(false);
-  const [width, setWidth] = useState(0);
-  const [props, set] = useSpring(() => ({
-    width: "0%",
-    backgroundColor: "hotpink",
-  }));
-  useEffect(() => {
-    if (pressed)
-      set({
-        from: { width: "0%", backgroundColor: "hotpink" },
-        to: { width: "100%", backgroundColor: "red" },
-        immediate: false,
-        config: { duration: 400 },
-      });
-    else {
-          setPower(parseInt(width));
-      set({ to: { width: "0%", backgroundColor: "hotpink" }, immediate: true });
-    }
-  }, [pressed, set, setPower, width]);
-
+    const randomPressure = Math.random()*100
+    console.log('randomPressure',randomPressure)
   return (
     <button
       className="main"
-      onMouseDown={() => {
-        toggle(!pressed);
-      }}
-      onMouseUp={() => {
-        toggle(!pressed);
-      }}
-      onTouchStart={() => {
-        toggle(!pressed);
-      }}
-      onTouchEnd={() => {
-        toggle(!pressed);
-      }}
+        onClick={()=>{setPower(randomPressure)}}
     >
-      <animated.div
-        className="fill"
-        style={{
-          width: props.width,
-          background: props.backgroundColor,
-        }}
-      />
-      <animated.div className="content">
-        {props.width.interpolate((x) => {
-          setWidth(parseInt(x));
-          return x === "0%" ? "Hold Me For More Strength" : "Pressurised "+parseInt(x) + "%";
-        })}
-      </animated.div>
-    </button>
+     Start Rolling </button>
   );
 };
 
