@@ -1,0 +1,26 @@
+{
+  "files": {
+    "main.css": "/lucky-wheel/static/css/main.2db42355.chunk.css",
+    "main.js": "/lucky-wheel/static/js/main.53beebe7.chunk.js",
+    "main.js.map": "/lucky-wheel/static/js/main.53beebe7.chunk.js.map",
+    "runtime-main.js": "/lucky-wheel/static/js/runtime-main.ab7cd794.js",
+    "runtime-main.js.map": "/lucky-wheel/static/js/runtime-main.ab7cd794.js.map",
+    "static/js/2.fef2e093.chunk.js": "/lucky-wheel/static/js/2.fef2e093.chunk.js",
+    "static/js/2.fef2e093.chunk.js.map": "/lucky-wheel/static/js/2.fef2e093.chunk.js.map",
+    "index.html": "/lucky-wheel/index.html",
+    "precache-manifest.33428030594861785884f3322ecc56cd.js": "/lucky-wheel/precache-manifest.33428030594861785884f3322ecc56cd.js",
+    "service-worker.js": "/lucky-wheel/service-worker.js",
+    "static/css/main.2db42355.chunk.css.map": "/lucky-wheel/static/css/main.2db42355.chunk.css.map",
+    "static/js/2.fef2e093.chunk.js.LICENSE.txt": "/lucky-wheel/static/js/2.fef2e093.chunk.js.LICENSE.txt",
+    "static/media/acy_security_logo.png": "/lucky-wheel/static/media/acy_security_logo.c5820fbb.png",
+    "static/media/delete.5ace3fb8.svg": "/lucky-wheel/static/media/delete.5ace3fb8.svg",
+    "static/media/santax.gif": "/lucky-wheel/static/media/santax.b9e77b8a.gif",
+    "static/media/tree.gif": "/lucky-wheel/static/media/tree.abaf2efe.gif"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ab7cd794.js",
+    "static/js/2.fef2e093.chunk.js",
+    "static/css/main.2db42355.chunk.css",
+    "static/js/main.53beebe7.chunk.js"
+  ]
+}
