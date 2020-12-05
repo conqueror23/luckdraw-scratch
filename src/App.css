@@ -1,6 +1,6 @@
 body {
   margin: auto;
-  background-color: #282c34;
+  background-color:#01254F;
   text-align: center;
   min-height: 100vh;
   display: block;
@@ -87,4 +87,26 @@ input[type=text] {
   border: 1px solid #a3aab8;
   border-radius: 5px;
   box-sizing: border-box;
+}
+.company-logo{
+    padding:20px;
+    width:140px;
+    height:auto;
+    /* background:#a6a5ae; */
+    position:fixed;
+    left:10px;
+    top:10px;
+}
+.result-popups{
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+}
+.christmas-tree{
+    position:fixed;
+    left:0px;
+    width:200px;
+    height:auto;
+    bottom:0px;
 }

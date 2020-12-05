@@ -3,6 +3,10 @@ import { animated, useSpring } from "react-spring";
 import {ReactComponent as Logo} from "./delete.svg";
 import "./App.css";
 import Winners from './winnerList/WinnerList.jsx'
+import Popup from './popups/Popups.jsx'
+import acyLogo from './acy_security_logo.png'
+import santas from './santax.gif'
+import chrismasTree from './tree.gif'
 
 var storage = window.localStorage;
 
@@ -41,6 +45,9 @@ function App() {
     const cx = 250;
     const cy = 250;
     const [list, setList] = useState(default_list);
+    const [ selectedNumber,setSelectedNumber] = useState();
+    const [openPop,setOpenPop]=useState(false)
+
     const [name, setName] = useState("");
     const [power, setPower] = useState(0);
     const [previousPower,setPreviousPower]= useState(0)
@@ -76,28 +83,13 @@ function App() {
             });
             setAcc(calcuPower);
             setPreviousPower(power);
+            setSelectedNumber (getSelectedNumber(list,calcuPower))
 
-            const selectedNumber =getSelectedNumber(list,calcuPower)
-
-            //TODO add a popups which enable to create a button and user may click button to remove privious result 
-            //
             setTimeout(()=>{
-                if(!winnerList.includes(selectedNumber)){
-                    setWinnerList([...winnerList,selectedNumber])
-                    //TODO show the result tab popups
-                    setList(list.filter((e) => e !== selectedNumber));
-                }
-
+                    setOpenPop(!openPop)
             },600)
-
-
-//             if(!winnerList.includes(selectedNumber)){
-//                 setWinnerList([...winnerList,selectedNumber])
-//             }
         }
-    }, [acc, config, list, power, previousPower, set, winnerList]);
-
-
+    }, [acc, config, list, openPop, power, previousPower, selectedNumber, set, winnerList]);
 
     const rederItems = (numOfItems) => {
         let items = [];
@@ -134,56 +126,70 @@ function App() {
         return items;
     };
 
-
     return (
         <div className="main-wrapper" style={{ overflowX: "hidden" }}>
-            <div className="content-wrapper">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 500 500"
-                    style={{ width: "60vw", height: "80vh" }}
-                >
-                        <g fill="white" stroke="green" strokeWidth="10">
-                            <circle cx="250" cy="250" r={r} />
-                                </g>
-                                    <animated.g
-                                        style={{
-                                            transform: props.transform,
-                                            transformOrigin: "center",
-                                        }}
-                                    >
-                                            {rederItems(list.length)}
-                                        </animated.g>
-                                            <g fill="#7fdaf8">
-                                                <circle cx="250" cy="250" r="15" />
-                                                    </g>
-                                                        <g fill="black">
-                                                            <circle cx="250" cy="250" r="4" />
-                                                                </g>
-                                                                    <g fill="#1a3997" stroke="#91abd0" strokeWidth="2">
-                                                                        <polygon points="250,70 230,10 270,10" />
+            <Popup isOpen={openPop}>
+                <div className="result-popups" style={{color:'white'}}>
+                    <img src={santas} alt="santas is bussy"/>
+                    <p>The Winner is : {selectedNumber} </p>
+                        <button onClick={()=>{
+                            setOpenPop(!openPop)
+
+                            setWinnerList([...winnerList,selectedNumber])
+                            setList(list.filter((e) => e !== selectedNumber));
+
+                        }}>Continue and Remove {selectedNumber}</button>
+                            </div>
+                                </Popup>
+                                    <div className="content-wrapper">
+                                        <svg
+                                            xmlns="http://www.w3.org/2000/svg"
+                                            viewBox="0 0 500 500"
+                                            style={{ width: "60vw", height: "80vh" }}
+                                        >
+                                                <g fill="white" stroke="green" strokeWidth="10">
+                                                    <circle cx="250" cy="250" r={r} />
+                                                        </g>
+                                                            <animated.g
+                                                                style={{
+                                                                    transform: props.transform,
+                                                                    transformOrigin: "center",
+                                                                }}
+                                                            >
+                                                                    {rederItems(list.length)}
+                                                                </animated.g>
+                                                                    <g fill="#7fdaf8">
+                                                                        <circle cx="250" cy="250" r="15" />
                                                                             </g>
-                                                                                </svg>
-                                                                                    <PressButton setPower={setPower} />
-                                                                                        <div style={{ marginTop: "20vh", marginBottom: "5vh" }}>
-                                                                                            <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
-                                                                                                <button className="button" onClick={addItem}>Add</button>
-                                                                                                    <button className="button" onClick={reset}>reset</button>
-                                                                                                        {list.map(n => (
-                                                                                                            <div key={n} className="item">
-                                                                                                                {n}
-                                                                                                                <Logo
-                                                                                                                    data-item={n}
-                                                                                                                    fill="#a3aab8"
-                                                                                                                    style={{ height: "1em", width:'auto', verticalAlign: "sub", marginLeft: "5px" }}
-                                                                                                                    onClick={deleteItem}
-                                                                                                                />
-                                                                                                                        </div>
-                                                                                                        ))}
-                                                                                                                            </div>
-                                                                                                                                </div>
-                                                                                                                                    <Winners winnerList={winnerList}/>
-                                                                                                                                        </div>
+                                                                                <g fill="black">
+                                                                                    <circle cx="250" cy="250" r="4" />
+                                                                                        </g>
+                                                                                            <g fill="#1a3997" stroke="#91abd0" strokeWidth="2">
+                                                                                                <polygon points="250,70 230,10 270,10" />
+                                                                                                    </g>
+                                                                                                        </svg>
+                                                                                                            <PressButton setPower={setPower} />
+                                                                                                                <div style={{ marginTop: "20vh", marginBottom: "5vh" ,zIndex:"1200"}}>
+                                                                                                                    <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                                                                                                                        <button className="button" onClick={addItem}>Add</button>
+                                                                                                                            <button className="button" onClick={reset}>reset</button>
+                                                                                                                                {list.map(n => (
+                                                                                                                                    <div key={n} className="item">
+                                                                                                                                        {n}
+                                                                                                                                        <Logo
+                                                                                                                                            data-item={n}
+                                                                                                                                            fill="#a3aab8"
+                                                                                                                                            style={{ height: "1em", width:'auto', verticalAlign: "sub", marginLeft: "5px" }}
+                                                                                                                                            onClick={deleteItem}
+                                                                                                                                        />
+                                                                                                                                                </div>
+                                                                                                                                ))}
+                                                                                                                                                    </div>
+                                                                                                                                                        </div>
+                                                                                                                                                            {winnerList.length>0?<Winners winnerList={winnerList}/>:null}
+                                                                                                                                                                <img className="christmas-tree" src={chrismasTree} alt='tree been choped off?'/>
+                                                                                                                                                                <img className="company-logo" src={acyLogo} alt="logo lost"/>
+                                                                                                                                                                </div>
     );
 }
 
