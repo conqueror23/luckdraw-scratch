@@ -177,7 +177,7 @@ function App() {
           viewBox="0 0 500 500"
           style={{ width: "60vw", height: "80vh" }}
         >
-          <g fill="white" stroke="green" strokeWidth="10">
+          <g fill="#E0E0E0" stroke="#9E9E9E" strokeWidth="10">
             <circle cx="250" cy="250" r={r} />
           </g>
           <animated.g

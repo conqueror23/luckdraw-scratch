@@ -11,7 +11,7 @@ const WinnerList = ({ winnerList = [] }) => {
             return (
               <div className="winner">
                 <span className="order"> Round : {index + 1}</span>
-                <span> Winner : {winner}</span>
+                <span> Winner : <span className="winner-value"> {winner}  </span></span>
               </div>
             );
           })}
