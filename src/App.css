@@ -1,6 +1,8 @@
 body {
   margin: auto;
-  background-color:#01254F;
+  /* background-color:#01254F; */
+  background:url(./meryChirstmasBg.gif) center center/cover no-repeat;
+  background-position: bottom right;
   text-align: center;
   min-height: 100vh;
   display: block;
