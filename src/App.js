@@ -7,6 +7,7 @@ import Popup from "./popups/Popups.jsx";
 import acyLogo from "./acy_security_logo.png";
 import santas from "./santax.gif";
 import chrismasTree from "./tree.gif";
+import merryChristmas from './merry-christmas.gif'
 
 var storage = window.localStorage;
 
@@ -236,6 +237,7 @@ function App() {
         alt="tree been choped off?"
       />
       <img className="company-logo" src={acyLogo} alt="logo lost" />
+        <img className="merrry-christmas" src={merryChristmas} alt='christmas incomming'/>
     </div>
   );
 }
