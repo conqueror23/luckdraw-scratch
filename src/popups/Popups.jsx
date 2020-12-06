@@ -45,7 +45,7 @@ const cssContent = css`
   position: relative;
   background:url(${backFrame}) center center/cover no-repeat;
   z-index: 5;
-  border-radius: 4px;
+  border-radius: 50%;
   align-self: flex-start;
   color: #fff;
   width: 422px;

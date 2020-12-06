@@ -178,7 +178,7 @@ function App() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"
-          style={{ width: "60vw", height: "80vh" }}
+          style={{ width: "50vw", height: "75vh" }}
         >
           <g fill="#c0392b" stroke="#f1c40f" strokeWidth="10">
             <circle cx="250" cy="250" r={r} />

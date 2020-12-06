@@ -1,12 +1,13 @@
 .winnerList{
     display: flex;
     position: fixed;
-    right:0px;
+    left:0;
     top:0px;
     border-top:2px #cb2324 dotted;
     border-bottom:2px #cb2324  dotted;
     flex-direction:column;
     padding:10px 80px;
+    padding-top:130px;
     justify-content: space-evenly;
     align-items: flex-start;
     min-width:150px;

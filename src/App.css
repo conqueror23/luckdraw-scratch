@@ -48,7 +48,8 @@ body {
 }
 
 .main-wrapper .draw-area{
-    padding-top:10vh;
+    padding-top:5vh;
+    padding-left:50vw;
 }
 
 .content-wrapper{
@@ -57,6 +58,11 @@ body {
     flex-wrap:nowrap;
     align-items:center;
     justify-content:center;
+    padding:50px 0;
+    border-radius:16px;
+    
+    background:rgba(0, 0, 0, 0.4);
+    padding: 10px 0;
 }
 
 .content-wrapper text{
@@ -136,7 +142,7 @@ background:#9E9E9E;
 }
 .merrry-christmas{
     position:fixed;
-    left:10px;
+    left:50px;
     width:200px;
     height:auto;
     top:5px;
