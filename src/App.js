@@ -111,43 +111,52 @@ function App() {
   ]);
 
   const rederItems = (numOfItems) => {
-    let items = [];
-    const abbrName = (name) => {
-      return name.length > 8 ? name.slice(0, 8) + "..." : name;
-    };
-    for (let i = 0; i < numOfItems; i++) {
-      let xLength = Math.cos(2 * Math.PI * (i / numOfItems + OFFSET)) * (r - 5);
-      let yLength = Math.sin(2 * Math.PI * (i / numOfItems + OFFSET)) * (r - 5);
-      let txLength =
-        Math.cos(2 * Math.PI * ((i + 0.5) / numOfItems + OFFSET)) * (r / 2);
-      let tyLength =
-        Math.sin(2 * Math.PI * ((i + 0.5) / numOfItems + OFFSET)) * (r / 2);
-      items.push(
-        <Fragment key={i}>
-          <line
-            stroke="#f1c40f"
-            strokeWidth="2"
-            x1={cx + xLength}
-            y1={cy + yLength}
-            x2={cx}
-            y2={cy}
-          />
-          <text
-            x={cx + txLength}
-            y={cy + tyLength}
-            fontSize="15px"
-            transform={`rotate(${((i + 0.5) / numOfItems + OFFSET) * 360}
+      let items = [];
+      const abbrName = (name) => {
+          return name.length > 8 ? name.slice(0, 8) + "..." : name;
+      };
+
+      const  getRandomColor=()=>{
+          var color = "";
+          for(var i = 0; i < 3; i++) {
+              var sub = Math.floor(Math.random() * 256).toString(16);
+              color += (sub.length == 1 ? "0" + sub : sub);
+          }
+          return "#" + color;
+      }
+
+      for (let i = 0; i < numOfItems; i++) {
+          let xLength = Math.cos(2 * Math.PI * (i / numOfItems + OFFSET)) * (r - 5);
+          let yLength = Math.sin(2 * Math.PI * (i / numOfItems + OFFSET)) * (r - 5);
+          let txLength =
+              Math.cos(2 * Math.PI * ((i + 0.5) / numOfItems + OFFSET)) * (r / 2);
+          let tyLength =
+              Math.sin(2 * Math.PI * ((i + 0.5) / numOfItems + OFFSET)) * (r / 2);
+          items.push(
+
+              <Fragment key={i}>
+                  <line
+                      stroke={getRandomColor()}
+                      strokeWidth="2"
+                      x1={cx + xLength}
+                      y1={cy + yLength}
+                      x2={cx}
+                      y2={cy}
+                  />
+                          <text
+                              x={cx + txLength}
+                              y={cy + tyLength}
+                              fontSize="15px"
+                              transform={`rotate(${((i + 0.5) / numOfItems + OFFSET) * 360}
                   ${cx + txLength},
                   ${cy + tyLength})`}
-              color="red"
-              style={{color:'red'}}
-          >
-            {abbrName(list[i])}
-          </text>
-        </Fragment>
-      );
-    }
-    return items;
+                          >
+                                  {abbrName(list[i])}
+                              </text>
+                                  </Fragment>
+          );
+      }
+      return items;
   };
 
   return (
@@ -178,9 +187,9 @@ function App() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"
-          style={{ width: "50vw", height: "75vh" }}
+          style={{ width: "50vw", height: "92vh",padding:"0 10vw"}}
         >
-          <g fill="#c0392b" stroke="#f1c40f" strokeWidth="10">
+          <g fill="rgba(255, 255, 255, 0.6)" stroke="#f1c40f" strokeWidth="10">
             <circle cx="250" cy="250" r={r} />
           </g>
           <animated.g
@@ -194,13 +203,13 @@ function App() {
           <g fill="#f1c40f">
             <circle cx="250" cy="250" r="15" />
           </g>
-          <g fill="#c0392b">
+          <g fill="white">
             <circle cx="250" cy="250" r="4" />
           </g>
           <g fill="#c0392b" stroke="#f1c40f" strokeWidth="2">
             <polygon points="250,70 230,5 270,5" />
           </g>
-        </svg>:<div style={{height:"100vh",marginTop:"100%",fontSize:"40px",color:"red"}}> Last Winner is {list[0]}</div>}
+        </svg>:<div style={{height:"52vh",width:"50vw",marginTop:"40%",fontSize:"40px",color:"#f1c40f",padding:"0 10vw"}}> Last Winner is {list[0]}</div>}
         <PressButton setPower={setPower} />
       </div>
       {winnerList.length > 0 ? <Winners winnerList={winnerList} /> : null}

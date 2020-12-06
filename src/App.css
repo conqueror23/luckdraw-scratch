@@ -17,7 +17,7 @@ body {
   position: relative;
   width: 200px;
   height: 50px;
-  background: #272727;
+  background: rgba(255, 99, 71, 0.4);
   color:#f1c40f;
   cursor: pointer;
   border-radius: 5px;
@@ -48,7 +48,7 @@ body {
 }
 
 .main-wrapper .draw-area{
-    padding-top:5vh;
+    padding-top:0vh;
     padding-left:50vw;
 }
 
@@ -109,13 +109,15 @@ input[type=text] {
   box-sizing: border-box;
 }
 .company-logo{
-    padding:20px;
+    padding:10px;
     width:140px;
     height:auto;
     /* background:#a6a5ae; */
+    background:rgba(255, 255, 255, 0.3);
+    border-radius:4px;
     position:fixed;
-    right:10px;
-    bottom:10px;
+    top:5px;
+    right:5px;
 }
 .result-popups{
     display:flex;

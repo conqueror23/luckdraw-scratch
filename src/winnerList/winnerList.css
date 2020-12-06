@@ -6,13 +6,15 @@
     border-top:2px #cb2324 dotted;
     border-bottom:2px #cb2324  dotted;
     flex-direction:column;
-    padding:10px 80px;
+    padding:10px 110px;
     padding-top:130px;
     justify-content: space-evenly;
     align-items: flex-start;
     min-width:150px;
-    background:url(./background.png) center center/cover no-repeat;
-    color:#cb2324;
+
+    background:rgba(0, 0, 0, 0.4);
+    color:#f1c40f;
+    transition: 2s ease-in-out;
 }
 
 .winnerList .winner{
@@ -22,7 +24,7 @@
     align-items: flex-start;
 }
  .winnerList .winner-value{
-    color:#8c0e0f;
+    color:#fff;
     font-weight: 500;;
 
  }
