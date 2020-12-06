@@ -45,13 +45,12 @@ const map = function (value, in_min, in_max, out_min, out_max) {
 
 function App() {
   const [winnerList, setWinnerList] = useState([]);
-  const r = 190;
+  const r = 170;
   const cx = 250;
   const cy = 250;
   const [list, setList] = useState(default_list);
   const [selectedNumber, setSelectedNumber] = useState();
   const [openPop, setOpenPop] = useState(false);
-
   const [name, setName] = useState("");
   const [power, setPower] = useState(0);
   const [previousPower, setPreviousPower] = useState(0);
@@ -126,7 +125,7 @@ function App() {
       items.push(
         <Fragment key={i}>
           <line
-            stroke="#4065a2"
+            stroke="#f1c40f"
             strokeWidth="2"
             x1={cx + xLength}
             y1={cy + yLength}
@@ -140,6 +139,8 @@ function App() {
             transform={`rotate(${((i + 0.5) / numOfItems + OFFSET) * 360}
                   ${cx + txLength},
                   ${cy + tyLength})`}
+              color="red"
+              style={{color:'red'}}
           >
             {abbrName(list[i])}
           </text>
@@ -150,9 +151,10 @@ function App() {
   };
 
   return (
+      <>
     <div className="main-wrapper" style={{ overflowX: "hidden" }}>
       <Popup isOpen={openPop}>
-        <div className="result-popups" style={{ color: "white" }}>
+        <div className="result-popups" >
           <img src={santas} alt="santas is bussy" />
           <p>
             The Winner is :{" "}
@@ -170,15 +172,15 @@ function App() {
           </button>
         </div>
       </Popup>
+    <div className="draw-area">
       <div className="content-wrapper">
-
         {list&&list.length>1?
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"
           style={{ width: "60vw", height: "80vh" }}
         >
-          <g fill="#E0E0E0" stroke="#9E9E9E" strokeWidth="10">
+          <g fill="#c0392b" stroke="#f1c40f" strokeWidth="10">
             <circle cx="250" cy="250" r={r} />
           </g>
           <animated.g
@@ -189,18 +191,26 @@ function App() {
           >
             {rederItems(list.length)}
           </animated.g>
-          <g fill="#7fdaf8">
+          <g fill="#f1c40f">
             <circle cx="250" cy="250" r="15" />
           </g>
-          <g fill="black">
+          <g fill="#c0392b">
             <circle cx="250" cy="250" r="4" />
           </g>
-          <g fill="#1a3997" stroke="#91abd0" strokeWidth="2">
-            <polygon points="250,70 230,10 270,10" />
+          <g fill="#c0392b" stroke="#f1c40f" strokeWidth="2">
+            <polygon points="250,70 230,5 270,5" />
           </g>
-        </svg>:<div style={{height:"100vh",marginTop:"100%",fontSize:"40px",color:"#fff"}}> Last Winner is {list[0]}</div>}
+        </svg>:<div style={{height:"100vh",marginTop:"100%",fontSize:"40px",color:"red"}}> Last Winner is {list[0]}</div>}
         <PressButton setPower={setPower} />
-        <div style={{ marginTop: "20vh", marginBottom: "5vh", zIndex: "1200" }}>
+      </div>
+      {winnerList.length > 0 ? <Winners winnerList={winnerList} /> : null}
+          </div>
+      <img className="company-logo" src={acyLogo} alt="logo lost" />
+        <img className="merrry-christmas" src={merryChristmas} alt='christmas incomming'/>
+
+    </div>
+        <div style={{ marginTop: "100vh", marginBottom: "5vh", zIndex: "1200",position:"absolute",left:"45%" }}>
+            <h1> Here comes with backdoors :-D</h1>
           <input
             type="text"
             value={name}
@@ -229,16 +239,7 @@ function App() {
             </div>
           ))}
         </div>
-      </div>
-      {winnerList.length > 0 ? <Winners winnerList={winnerList} /> : null}
-      <img
-        className="christmas-tree"
-        src={chrismasTree}
-        alt="tree been choped off?"
-      />
-      <img className="company-logo" src={acyLogo} alt="logo lost" />
-        <img className="merrry-christmas" src={merryChristmas} alt='christmas incomming'/>
-    </div>
+      </>
   );
 }
 

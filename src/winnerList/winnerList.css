@@ -1,11 +1,17 @@
 .winnerList{
     display: flex;
     position: fixed;
-    right:90px;
-    top:10px;
+    right:0px;
+    top:0px;
+    border-top:2px #cb2324 dotted;
+    border-bottom:2px #cb2324  dotted;
     flex-direction:column;
+    padding:10px 80px;
     justify-content: space-evenly;
     align-items: flex-start;
+    min-width:150px;
+    background:url(./background.png) center center/cover no-repeat;
+    color:#cb2324;
 }
 
 .winnerList .winner{
@@ -15,11 +21,11 @@
     align-items: flex-start;
 }
  .winnerList .winner-value{
-    color:#a29bfe;
+    color:#8c0e0f;
+    font-weight: 500;;
 
  }
 .winnerList .winner .order{
-    color:#fff;
     padding-right:16px;
 }
 

@@ -2,6 +2,7 @@ import React from "react";
 import { css } from "@emotion/css";
 import { useSpring, useTransition, animated } from "react-spring";
 
+import backFrame from './red-christmas-background.jpg'
 export default function Popup({ isOpen, children }) {
   const props = useSpring({
     from: { opacity: 0 },
@@ -30,6 +31,7 @@ export default function Popup({ isOpen, children }) {
 
 const cssWrapper = css`
   position: fixed;
+  border-radius:8px;
   top: 0;
   left: 0;
   width: 100%;
@@ -41,13 +43,13 @@ const cssWrapper = css`
 
 const cssContent = css`
   position: relative;
+  background:url(${backFrame}) center center/cover no-repeat;
   z-index: 5;
-  border-radius: 2px;
-  background: #01254F;
+  border-radius: 4px;
   align-self: flex-start;
   color: #fff;
   width: 422px;
-  padding: 24px;
+  padding: 30px;
   box-sizing: border-box;
   min-height: 150px;
   margin: auto;

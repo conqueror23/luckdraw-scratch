@@ -1,10 +1,9 @@
 body {
   margin: auto;
   /* background-color:#01254F; */
-  background:url(./meryChirstmasBg.gif) center center/cover no-repeat;
+  /* background:url(./meryChirstmasBg.gif) center center/cover no-repeat; */
   background-position: bottom right;
   text-align: center;
-  min-height: 100vh;
   display: block;
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
@@ -19,7 +18,7 @@ body {
   width: 200px;
   height: 50px;
   background: #272727;
-  color:#fff;
+  color:#f1c40f;
   cursor: pointer;
   border-radius: 5px;
   border: 2px solid white;
@@ -28,7 +27,7 @@ body {
 
 .main:active{
       background:#fff;
-      color:#91cff8;
+      color:#f1c40f;
   }
 .fill {
   position: absolute;
@@ -36,12 +35,20 @@ body {
   left: 0;
   height: 100%;
 }
+
 .main-wrapper{
-display:flex;
+    display:flex;
+  background:url(./meryChirstmasBg.gif) center center/cover no-repeat;
     flex-direction:row;
     flex-wrap:nowrap;
     align-items:flex-start;
     justify-content:center;
+    min-height:100vh;
+    color:#f1c40f;
+}
+
+.main-wrapper .draw-area{
+    padding-top:10vh;
 }
 
 .content-wrapper{
@@ -50,6 +57,11 @@ display:flex;
     flex-wrap:nowrap;
     align-items:center;
     justify-content:center;
+}
+
+.content-wrapper text{
+    color:#f1c40f;
+
 }
 .content {
   position: absolute;
@@ -124,10 +136,10 @@ background:#9E9E9E;
 }
 .merrry-christmas{
     position:fixed;
-    left:0px;
+    left:10px;
     width:200px;
     height:auto;
-    top:0px;
+    top:5px;
 }
 .christmas-tree{
     position:fixed;
