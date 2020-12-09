@@ -6,7 +6,6 @@ import Winners from "./winnerList/WinnerList.jsx";
 import Popup from "./popups/Popups.jsx";
 import acyLogo from "./acy_security_logo.png";
 import santas from "./santax.gif";
-import chrismasTree from "./tree.gif";
 import merryChristmas from './merry-christmas.gif'
 
 var storage = window.localStorage;
@@ -162,6 +161,7 @@ function App() {
   return (
       <>
     <div className="main-wrapper" style={{ overflowX: "hidden" }}>
+
       <Popup isOpen={openPop}>
         <div className="result-popups" >
           <img src={santas} alt="santas is bussy" />
@@ -187,7 +187,7 @@ function App() {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 500 500"
-          style={{ width: "50vw", height: "92vh",padding:"0 10vw"}}
+          style={{ width: "50vw", height: "93vh",padding:"0 10vw"}}
         >
           <g fill="rgba(255, 255, 255, 0.6)" stroke="#f1c40f" strokeWidth="10">
             <circle cx="250" cy="250" r={r} />
