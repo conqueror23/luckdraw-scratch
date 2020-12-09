@@ -1,8 +1,8 @@
 {
-  "name": "lucky-wheel",
+  "name": "lucky-wheel-demo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://frankie95.github.io/lucky-wheel/",
+  "main": "./",
   "dependencies": {
     "@emotion/css": "^11.0.0",
     "@testing-library/jest-dom": "^4.2.4",
